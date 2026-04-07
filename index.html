@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Sky's Biggest Week</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1c1c1e;--paper:#f4f1eb;--warm:#e8e0d0;--accent:#2e5d4b;--gold:#c9922a;--sky:#3a6186;--red:#b03a2e;--muted:#7a7266;--card:#ffffff;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;min-height:100vh;}
+
+header{background:var(--ink);color:var(--paper);padding:44px 40px 32px;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:var(--accent);opacity:.15;}
+header::after{content:'';position:absolute;bottom:-40px;left:200px;width:180px;height:180px;border-radius:50%;background:var(--gold);opacity:.08;}
+.hinner{position:relative;z-index:1;}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.trip-title{font-family:'Playfair Display',serif;font-size:clamp(32px,6vw,60px);font-weight:900;line-height:1.05;letter-spacing:-1px;margin-bottom:6px;}
+.trip-title em{color:var(--gold);font-style:normal;}
+.trip-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:rgba(244,241,235,.5);margin-bottom:22px;}
+.pills{display:flex;gap:10px;flex-wrap:wrap;}
+.pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:500;color:rgba(244,241,235,.85);}
+
+.cbar{background:linear-gradient(135deg,#2e5d4b,#1e3d33);padding:20px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.clbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(244,241,235,.55);margin-bottom:6px;}
+.cunits{display:flex;gap:16px;}
+.cunit{text-align:center;}
+.cnum{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--paper);line-height:1;}
+.cultxt{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(244,241,235,.45);margin-top:2px;}
+.cdiv{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);opacity:.5;align-self:flex-start;margin-top:4px;}
+.cdatetxt{font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:rgba(244,241,235,.65);}
+
+.tabs{background:var(--ink);border-top:1px solid rgba(255,255,255,.07);display:flex;padding:0 40px;overflow-x:auto;}
+.tab{padding:13px 18px;font-size:13px;font-weight:500;color:rgba(244,241,235,.4);cursor:pointer;border:none;background:none;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
+.tab:hover{color:rgba(244,241,235,.8);}
+.tab.active{color:var(--paper);border-bottom-color:var(--gold);}
+
+main{max-width:1000px;margin:0 auto;padding:36px 20px 80px;}
+.panel{display:none;animation:fadeUp .25s ease;}
+.panel.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.shead{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.stitle{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;}
+.abtn{background:var(--ink);color:var(--paper);border:none;padding:9px 16px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;border-radius:4px;transition:background .2s;}
+.abtn:hover{background:#333;}
+
+.statsrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:28px;}
+.sbox{background:var(--card);border:1px solid var(--warm);border-radius:8px;padding:16px 18px;}
+.snum{font-family:'Playfair Display',serif;font-size:38px;font-weight:900;line-height:1;}
+.slbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+
+.ftbanner{background:linear-gradient(135deg,#3a6186,#2a4a6a);border-radius:10px;padding:20px 24px;margin-bottom:24px;color:white;position:relative;overflow:hidden;}
+.ftbanner::before{content:'🏔';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:52px;opacity:.12;}
+.ftey{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px;}
+.fttitle{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:6px;}
+.ftsub{font-size:13px;opacity:.7;margin-bottom:12px;}
+.ftnames{display:flex;flex-wrap:wrap;gap:8px;}
+.ftchip{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 12px;font-size:13px;font-weight:500;}
+
+.factsgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin-bottom:28px;}
+.fcard{background:var(--card);border:1px solid var(--warm);border-radius:8px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;}
+.ficon{font-size:22px;flex-shrink:0;}
+.ftxt{font-size:13px;line-height:1.55;color:var(--ink);}
+.ftxt strong{color:var(--accent);}
+
+.dpreview{margin-bottom:24px;}
+.dprlbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.dprlbl::after{content:'';flex:1;height:1px;background:var(--warm);}
+
+.dayblock{margin-bottom:36px;}
+.dayhdr{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.daybadge{background:var(--ink);color:var(--paper);border-radius:6px;padding:8px 14px;text-align:center;min-width:82px;}
+.dbwk{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;opacity:.5;}
+.dbdt{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;line-height:1.1;}
+
+.ecard{background:var(--card);border:1px solid var(--warm);border-radius:8px;margin-bottom:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:box-shadow .2s;cursor:pointer;}
+.ecard:hover{box-shadow:0 4px 16px rgba(0,0,0,.09);}
+.ecinner{display:flex;align-items:stretch;}
+.estrepe{width:4px;flex-shrink:0;}
+.ebody{flex:1;padding:13px 15px;display:flex;align-items:flex-start;gap:12px;}
+.etimecol{min-width:56px;padding-top:1px;flex-shrink:0;}
+.etime{font-family:'DM Mono',monospace;font-size:12px;font-weight:500;}
+.eallday{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;}
+.einfo{flex:1;}
+.ename{font-weight:600;font-size:15px;margin-bottom:3px;}
+.ewhere{font-size:12px;color:var(--muted);margin-bottom:2px;}
+.enote{font-size:12px;color:var(--muted);font-style:italic;margin-top:3px;}
+.etag{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:600;letter-spacing:.5px;white-space:nowrap;flex-shrink:0;align-self:flex-start;}
+.tag-food{background:#fff0e0;color:#b06010;}
+.tag-activity{background:#e4f4ec;color:#1e6b40;}
+.tag-golf{background:#e8f4e0;color:#3a6020;}
+.tag-event{background:#fde8e8;color:#9b1c1c;}
+.tag-transport{background:#e4eef8;color:#1e4e80;}
+.tag-other{background:var(--warm);color:var(--muted);}
+
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.fltcard{background:var(--card);border:1px solid var(--warm);border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);transition:box-shadow .2s;}
+.fltcard:hover{box-shadow:0 4px 14px rgba(0,0,0,.1);}
+.flthd{padding:13px 16px;display:flex;align-items:flex-start;justify-content:space-between;}
+.flthd.outbound{background:var(--sky);color:white;}
+.flthd.inbound{background:var(--accent);color:white;}
+.fltdlbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;opacity:.7;margin-bottom:2px;}
+.fltpname{font-weight:700;font-size:16px;}
+.fltairline{font-size:12px;opacity:.7;text-align:right;}
+.fltbody{padding:16px;}
+.flroute{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+.fap{text-align:center;}
+.fcode{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1;}
+.ftime{font-size:12px;color:var(--muted);margin-top:2px;font-family:'DM Mono',monospace;}
+.farrow{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.fline{width:100%;height:1px;background:var(--warm);position:relative;}
+.fline::after{content:'▶';position:absolute;right:-5px;top:-8px;font-size:10px;color:var(--muted);}
+.fmeta{display:flex;flex-direction:column;align-items:center;gap:2px;margin-top:2px;}
+.fnbtn{font-family:'DM Mono',monospace;font-size:11px;color:var(--sky);letter-spacing:1px;background:none;border:none;cursor:pointer;padding:2px 6px;border-radius:3px;transition:background .15s;font-weight:500;}
+.fnbtn:hover{background:#e4eef8;}
+.fvia{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;}
+.fdirect{font-size:10px;color:var(--accent);font-family:'DM Mono',monospace;font-weight:600;}
+.fltdets{display:grid;grid-template-columns:1fr 1fr;gap:8px;border-top:1px solid var(--warm);padding-top:12px;}
+.fdlbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+.fdval{font-size:13px;font-weight:500;margin-top:2px;}
+.fltfoot{padding:8px 16px;border-top:1px solid var(--warm);display:flex;justify-content:flex-end;}
+.ibtn{background:none;border:none;cursor:pointer;font-size:12px;padding:5px 10px;border-radius:3px;font-family:'DM Sans',sans-serif;color:var(--muted);transition:background .15s;}
+.ibtn:hover{background:var(--warm);color:var(--ink);}
+
+.stpop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.stpop.open{display:flex;}
+.stbox{background:var(--paper);border-radius:12px;padding:28px;max-width:380px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,.3);animation:modalIn .2s ease;}
+@keyframes modalIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
+.spfn{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:4px;}
+.spair{font-size:13px;color:var(--muted);margin-bottom:16px;}
+.sprt{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.spap{text-align:center;}
+.spcode{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;}
+.sptm{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);}
+.spline{flex:1;height:1px;background:var(--warm);position:relative;}
+.spline::after{content:'▶';position:absolute;right:-4px;top:-7px;font-size:9px;color:var(--muted);}
+.spstrow{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:white;border:1px solid var(--warm);border-radius:8px;margin-bottom:12px;}
+.spstlbl{font-size:13px;font-weight:500;}
+.sbadge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 8px;border-radius:20px;font-family:'DM Mono',monospace;}
+.son{background:#e4f4ec;color:#1e6b40;}
+.sclose{width:100%;padding:10px;background:var(--ink);color:var(--paper);border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px;}
+
+.plist{display:flex;flex-direction:column;gap:10px;}
+.pcard{background:var(--card);border:1px solid var(--warm);border-radius:8px;padding:14px 18px;display:flex;align-items:center;gap:14px;}
+.ava{width:44px;height:44px;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;flex-shrink:0;}
+.pname{font-weight:600;font-size:15px;}
+.psub{font-size:13px;color:var(--muted);}
+.pbadge{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;}
+.bfirst{background:#e4eef8;color:#1e4e80;}
+.bvet{background:#e4f4ec;color:#1e6b40;}
+
+.overlay{display:none;position:fixed;inset:0;background:rgba(28,28,30,.65);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.overlay.open{display:flex;}
+.modal{background:var(--paper);border-radius:10px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.35);animation:modalIn .22s ease;}
+.mhdr{padding:22px 24px 0;display:flex;align-items:center;justify-content:space-between;}
+.mtitle{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;}
+.mx{background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted);line-height:1;padding:2px 6px;border-radius:3px;}
+.mx:hover{background:var(--warm);}
+.mbody{padding:18px 24px 24px;}
+.fg{margin-bottom:14px;}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+label{display:block;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+input,select,textarea{width:100%;padding:9px 11px;border:1px solid #d4cbb8;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:14px;background:white;color:var(--ink);outline:none;transition:border-color .15s;}
+input:focus,select:focus,textarea:focus{border-color:var(--ink);}
+textarea{resize:vertical;min-height:65px;}
+.mfoot{display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--warm);padding-top:16px;margin-top:8px;}
+.bcancel{background:none;border:1px solid #d4cbb8;color:var(--muted);padding:9px 16px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;border-radius:4px;}
+.bcancel:hover{background:var(--warm);color:var(--ink);}
+.bsave{background:var(--ink);color:var(--paper);border:none;padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border-radius:4px;}
+.bsave:hover{background:#333;}
+.bdel{background:#fce8e8;border:1px solid #e0b0b0;color:var(--red);padding:9px 16px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;border-radius:4px;margin-right:auto;}
+.bdel:hover{background:#f8d0d0;}
+::-webkit-scrollbar{width:6px;height:6px;}::-webkit-scrollbar-track{background:var(--warm);}::-webkit-scrollbar-thumb{background:#c0b89a;border-radius:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hinner">
+    <div class="eyebrow">✦ Group Trip Itinerary · July 2026</div>
+    <div class="trip-title">Big Sky's <em>Biggest Week</em></div>
+    <div class="trip-sub">Big Sky, Montana · July 15–19, 2026</div>
+    <div class="pills">
+      <span class="pill">👥 8 travelers</span>
+      <span class="pill">✈ 8 flights booked</span>
+      <span class="pill">🗓 17 events</span>
+      <span class="pill">⛳ 2 tee times locked</span>
+    </div>
+  </div>
+</header>
+
+<div class="cbar">
+  <div>
+    <div class="clbl">Countdown to Big Sky</div>
+    <div class="cunits">
+      <div class="cunit"><div class="cnum" id="cd-d">--</div><div class="cultxt">Days</div></div>
+      <div class="cdiv">:</div>
+      <div class="cunit"><div class="cnum" id="cd-h">--</div><div class="cultxt">Hours</div></div>
+      <div class="cdiv">:</div>
+      <div class="cunit"><div class="cnum" id="cd-m">--</div><div class="cultxt">Mins</div></div>
+    </div>
+  </div>
+  <div style="text-align:right">
+    <div class="clbl">Wheels up</div>
+    <div class="cdatetxt">Wednesday, July 15, 2026</div>
+    <div style="font-size:11px;color:rgba(244,241,235,.45);margin-top:3px;font-family:'DM Mono',monospace">BNA 6:00am · CLT 5:45am</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('overview',this)">Overview</button>
+  <button class="tab" onclick="showTab('itinerary',this)">Itinerary</button>
+  <button class="tab" onclick="showTab('flights',this)">Flights</button>
+  <button class="tab" onclick="showTab('people',this)">People</button>
+</div>
+
+<main>
+
+<!-- OVERVIEW -->
+<div class="panel active" id="panel-overview">
+  <div class="statsrow">
+    <div class="sbox"><div class="snum">4</div><div class="slbl">Days</div></div>
+    <div class="sbox"><div class="snum">17</div><div class="slbl">Events</div></div>
+    <div class="sbox"><div class="snum">8</div><div class="slbl">Travelers</div></div>
+    <div class="sbox"><div class="snum">2</div><div class="slbl">Tee Times</div></div>
+  </div>
+
+  <div class="ftbanner">
+    <div class="ftey">🎉 First time in Big Sky!</div>
+    <div class="fttitle">Welcome to Montana, first timers!</div>
+    <div class="ftsub">You're about to have your minds absolutely blown. Buckle up.</div>
+    <div class="ftnames">
+      <span class="ftchip">Quinn 🆕</span>
+      <span class="ftchip">Bri 🆕</span>
+      <span class="ftchip">Sarah 🆕</span>
+      <span class="ftchip">Shelby 🆕</span>
+    </div>
+  </div>
+
+  <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:12px;">🐻 Did you know? Montana facts</div>
+  <div class="factsgrid">
+    <div class="fcard"><div class="ficon">🏔</div><div class="ftxt">Lone Peak towers at <strong>11,166 feet</strong> right above Big Sky. On a clear day you can see it from 80 miles away.</div></div>
+    <div class="fcard"><div class="ficon">🐻</div><div class="ftxt">Montana has the <strong>largest grizzly bear population</strong> in the lower 48. Make noise on the trails — they don't want to see you either.</div></div>
+    <div class="fcard"><div class="ficon">🌌</div><div class="ftxt">Montana has some of the <strong>darkest night skies in the US</strong>. The Milky Way is genuinely visible with the naked eye. Put your phone down.</div></div>
+    <div class="fcard"><div class="ficon">🎿</div><div class="ftxt">Big Sky Resort has <strong>5,850 skiable acres</strong> — the most in America. Those same slopes make for epic summer hiking terrain.</div></div>
+    <div class="fcard"><div class="ficon">🦌</div><div class="ftxt">Montana has <strong>more elk, deer & antelope</strong> than people. Keep your eyes open on every drive — wildlife sightings are basically guaranteed.</div></div>
+    <div class="fcard"><div class="ficon">🌡</div><div class="ftxt">July highs average <strong>77°F</strong>, but nights drop to <strong>43°F</strong>. Yes you'll want a jacket for the rodeo. No, you won't regret it.</div></div>
+  </div>
+
+  <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:14px;">📅 The week at a glance</div>
+  <div id="overviewDays"></div>
+</div>
+
+<!-- ITINERARY -->
+<div class="panel" id="panel-itinerary">
+  <div class="shead">
+    <div class="stitle">Itinerary</div>
+    <button class="abtn" onclick="openEventModal()">+ Add Event</button>
+  </div>
+  <div id="itineraryList"></div>
+</div>
+
+<!-- FLIGHTS -->
+<div class="panel" id="panel-flights">
+  <div class="shead">
+    <div class="stitle">Flights</div>
+    <button class="abtn" onclick="openFlightModal()">+ Add Flight</button>
+  </div>
+  <div style="background:#e4eef8;border:1px solid #c0d4ec;border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:#1e4e80;">
+    💡 <strong>Tap any flight number</strong> to see its status as of booking time. Check the Delta or AA app for live day-of updates.
+  </div>
+  <div class="fgrid" id="flightsList"></div>
+</div>
+
+<!-- PEOPLE -->
+<div class="panel" id="panel-people">
+  <div class="shead">
+    <div class="stitle">Travelers</div>
+    <button class="abtn" onclick="openPersonModal()">+ Add Person</button>
+  </div>
+  <div class="plist" id="peopleList"></div>
+</div>
+
+</main>
+
+<!-- STATUS POPUP -->
+<div class="stpop" id="stpop">
+  <div class="stbox">
+    <div class="spfn" id="sp-fn">DL2221</div>
+    <div class="spair" id="sp-air">Delta Air Lines · Boeing 737-900</div>
+    <div class="sprt">
+      <div class="spap"><div class="spcode" id="sp-from">BNA</div><div class="sptm" id="sp-dep">6:00am</div></div>
+      <div class="spline"></div>
+      <div class="spap"><div class="spcode" id="sp-to">MSP</div><div class="sptm" id="sp-arr">8:10am</div></div>
+    </div>
+    <div class="spstrow">
+      <span class="spstlbl">Status at booking</span>
+      <span class="sbadge son" id="sp-st">🟢 On Time</span>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.5">This status was captured at booking. For live day-of tracking, check the Delta or American Airlines app, or FlightAware.</p>
+    <button class="sclose" onclick="document.getElementById('stpop').classList.remove('open')">Close</button>
+  </div>
+</div>
+
+<!-- EVENT MODAL -->
+<div class="overlay" id="eventModal">
+  <div class="modal">
+    <div class="mhdr"><div class="mtitle" id="evTitle">Add Event</div><button class="mx" onclick="closeModal('eventModal')">×</button></div>
+    <div class="mbody">
+      <div class="fg"><label>Event Name</label><input id="ev-name"/></div>
+      <div class="fr2">
+        <div class="fg"><label>Type</label><select id="ev-type"><option value="food">🍽 Food & Drink</option><option value="activity">🏔 Activity/Hike</option><option value="golf">⛳ Golf</option><option value="event">🎸 Event/Show</option><option value="transport">🚗 Transport</option><option value="other">📌 Other</option></select></div>
+        <div class="fg"><label>Day</label><select id="ev-day"><option value="Wednesday">Wednesday Jul 15</option><option value="Thursday">Thursday Jul 16</option><option value="Friday">Friday Jul 17</option><option value="Saturday">Saturday Jul 18</option></select></div>
+      </div>
+      <div class="fr2">
+        <div class="fg"><label>Start Time</label><input type="time" id="ev-time"/></div>
+        <div class="fg"><label>End Time</label><input type="time" id="ev-endtime"/></div>
+      </div>
+      <div class="fg"><label>Location</label><input id="ev-location"/></div>
+      <div class="fg"><label>Who</label><input id="ev-who" placeholder="Everyone / Boys / Girls"/></div>
+      <div class="fg"><label>Notes</label><textarea id="ev-notes"></textarea></div>
+      <div class="mfoot">
+        <button class="bdel" id="evDel" onclick="deleteEvent()" style="display:none">Delete</button>
+        <button class="bcancel" onclick="closeModal('eventModal')">Cancel</button>
+        <button class="bsave" onclick="saveEvent()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLIGHT MODAL -->
+<div class="overlay" id="flightModal">
+  <div class="modal">
+    <div class="mhdr"><div class="mtitle" id="flTitle">Add Flight</div><button class="mx" onclick="closeModal('flightModal')">×</button></div>
+    <div class="mbody">
+      <div class="fr2">
+        <div class="fg"><label>Passenger(s)</label><input id="fl-name" placeholder="e.g. Grant & Emily"/></div>
+        <div class="fg"><label>Direction</label><select id="fl-dir"><option value="outbound">Outbound — Departing</option><option value="return">Return — Coming Home</option></select></div>
+      </div>
+      <div class="fr2">
+        <div class="fg"><label>From Airport</label><input id="fl-from" placeholder="BNA"/></div>
+        <div class="fg"><label>To Airport</label><input id="fl-to" placeholder="BZN"/></div>
+      </div>
+      <div class="fr3">
+        <div class="fg"><label>Date</label><input type="date" id="fl-date"/></div>
+        <div class="fg"><label>Departs</label><input type="time" id="fl-dep"/></div>
+        <div class="fg"><label>Arrives</label><input type="time" id="fl-arr"/></div>
+      </div>
+      <div class="fr2">
+        <div class="fg"><label>Flight # (use / for legs)</label><input id="fl-num" placeholder="DL2221 / DL1226"/></div>
+        <div class="fg"><label>Airline</label><input id="fl-airline" placeholder="Delta"/></div>
+      </div>
+      <div class="fr2">
+        <div class="fg"><label>Layover via (blank=direct)</label><input id="fl-via" placeholder="MSP"/></div>
+        <div class="fg"><label>Confirmation #</label><input id="fl-conf"/></div>
+      </div>
+      <div class="fg"><label>Notes</label><input id="fl-notes" placeholder="Seat, bags, layover time, etc."/></div>
+      <div class="mfoot">
+        <button class="bdel" id="flDel" onclick="deleteFlight()" style="display:none">Delete</button>
+        <button class="bcancel" onclick="closeModal('flightModal')">Cancel</button>
+        <button class="bsave" onclick="saveFlight()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PERSON MODAL -->
+<div class="overlay" id="personModal">
+  <div class="modal">
+    <div class="mhdr"><div class="mtitle" id="perTitle">Add Traveler</div><button class="mx" onclick="closeModal('personModal')">×</button></div>
+    <div class="mbody">
+      <div class="fr2">
+        <div class="fg"><label>Name</label><input id="per-name"/></div>
+        <div class="fg"><label>Montana experience?</label><select id="per-vet"><option value="first">First Timer 🆕</option><option value="vet">Montana Vet 🏔</option></select></div>
+      </div>
+      <div class="fr2">
+        <div class="fg"><label>Phone</label><input id="per-phone"/></div>
+        <div class="fg"><label>Notes</label><input id="per-notes" placeholder="Dietary needs, etc."/></div>
+      </div>
+      <div class="mfoot">
+        <button class="bdel" id="perDel" onclick="deletePerson()" style="display:none">Delete</button>
+        <button class="bcancel" onclick="closeModal('personModal')">Cancel</button>
+        <button class="bsave" onclick="savePerson()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DAYS=["Wednesday","Thursday","Friday","Saturday"];
+const DATES={Wednesday:"Jul 15",Thursday:"Jul 16",Friday:"Jul 17",Saturday:"Jul 18"};
+const TM={
+  food:{label:"Food & Drink",cls:"tag-food",stripe:"#e67e22"},
+  activity:{label:"Hike/Activity",cls:"tag-activity",stripe:"#27ae60"},
+  golf:{label:"Golf",cls:"tag-golf",stripe:"#5a8a30"},
+  event:{label:"Event/Show",cls:"tag-event",stripe:"#c0392b"},
+  transport:{label:"Transport",cls:"tag-transport",stripe:"#2980b9"},
+  other:{label:"Other",cls:"tag-other",stripe:"#aaa090"},
+};
+const AC=['#2e5d4b','#3a6186','#7b2d2d','#b8860b','#4a3d6b','#5a6a2b','#8a4a1e','#2a6a6a'];
+function uid(){return Math.random().toString(36).slice(2,9);}
+function ft(t){if(!t)return'';const[h,m]=t.split(':');const hr=parseInt(h);return`${hr>12?hr-12:hr||12}:${m}${hr>=12?'pm':'am'}`;}
+function ini(n){return n.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
+function ac(n){let s=0;for(let c of n)s+=c.charCodeAt(0);return AC[s%AC.length];}
+let eE=null,eF=null,eP=null;
+let S={events:[],flights:[],people:[]};
+
+// COUNTDOWN
+function cd(){
+  const t=new Date('2026-07-15T06:00:00');const n=new Date();const d=t-n;
+  if(d<=0){document.getElementById('cd-d').textContent='0';document.getElementById('cd-h').textContent='00';document.getElementById('cd-m').textContent='00';return;}
+  document.getElementById('cd-d').textContent=Math.floor(d/86400000);
+  document.getElementById('cd-h').textContent=String(Math.floor((d%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(Math.floor((d%3600000)/60000)).padStart(2,'0');
+}
+cd();setInterval(cd,60000);
+
+function showTab(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
+document.getElementById('stpop').addEventListener('click',e=>{if(e.target===document.getElementById('stpop'))document.getElementById('stpop').classList.remove('open');});
+
+function showStatus(fn,air,from,dep,to,arr){
+  document.getElementById('sp-fn').textContent=fn;
+  document.getElementById('sp-air').textContent=air+' · Boeing 737-900';
+  document.getElementById('sp-from').textContent=from;
+  document.getElementById('sp-dep').textContent=dep;
+  document.getElementById('sp-to').textContent=to;
+  document.getElementById('sp-arr').textContent=arr;
+  document.getElementById('stpop').classList.add('open');
+}
+
+// EVENTS
+function openEventModal(id=null){
+  eE=id;
+  document.getElementById('evTitle').textContent=id?'Edit Event':'Add Event';
+  document.getElementById('evDel').style.display=id?'inline-block':'none';
+  const ev=id?S.events.find(e=>e.id===id):null;
+  document.getElementById('ev-name').value=ev?.name||'';
+  document.getElementById('ev-type').value=ev?.type||'food';
+  document.getElementById('ev-day').value=ev?.day||'Wednesday';
+  document.getElementById('ev-time').value=ev?.time||'';
+  document.getElementById('ev-endtime').value=ev?.endtime||'';
+  document.getElementById('ev-location').value=ev?.location||'';
+  document.getElementById('ev-who').value=ev?.who||'Everyone';
+  document.getElementById('ev-notes').value=ev?.notes||'';
+  openModal('eventModal');
+}
+function saveEvent(){
+  const ev={id:eE||uid(),name:document.getElementById('ev-name').value||'Untitled',type:document.getElementById('ev-type').value,day:document.getElementById('ev-day').value,time:document.getElementById('ev-time').value,endtime:document.getElementById('ev-endtime').value,location:document.getElementById('ev-location').value,who:document.getElementById('ev-who').value,notes:document.getElementById('ev-notes').value};
+  if(eE)S.events=S.events.map(e=>e.id===eE?ev:e);else S.events.push(ev);
+  closeModal('eventModal');renderAll();
+}
+function deleteEvent(){if(!eE)return;S.events=S.events.filter(e=>e.id!==eE);closeModal('eventModal');renderAll();}
+
+// FLIGHTS
+function openFlightModal(id=null){
+  eF=id;
+  document.getElementById('flTitle').textContent=id?'Edit Flight':'Add Flight';
+  document.getElementById('flDel').style.display=id?'inline-block':'none';
+  const fl=id?S.flights.find(f=>f.id===id):null;
+  ['name','from','to','num','airline','via','conf','notes'].forEach(k=>document.getElementById('fl-'+k).value=fl?.[k]||'');
+  document.getElementById('fl-dir').value=fl?.dir||'outbound';
+  document.getElementById('fl-date').value=fl?.date||'';
+  document.getElementById('fl-dep').value=fl?.dep||'';
+  document.getElementById('fl-arr').value=fl?.arr||'';
+  openModal('flightModal');
+}
+function saveFlight(){
+  const fl={id:eF||uid(),name:document.getElementById('fl-name').value,dir:document.getElementById('fl-dir').value,from:document.getElementById('fl-from').value.toUpperCase(),to:document.getElementById('fl-to').value.toUpperCase(),date:document.getElementById('fl-date').value,dep:document.getElementById('fl-dep').value,arr:document.getElementById('fl-arr').value,num:document.getElementById('fl-num').value,airline:document.getElementById('fl-airline').value,via:document.getElementById('fl-via').value,conf:document.getElementById('fl-conf').value,notes:document.getElementById('fl-notes').value};
+  if(eF)S.flights=S.flights.map(f=>f.id===eF?fl:f);else S.flights.push(fl);
+  closeModal('flightModal');renderFlights();
+}
+function deleteFlight(){if(!eF)return;S.flights=S.flights.filter(f=>f.id!==eF);closeModal('flightModal');renderFlights();}
+
+// PEOPLE
+function openPersonModal(id=null){
+  eP=id;
+  document.getElementById('perTitle').textContent=id?'Edit Traveler':'Add Traveler';
+  document.getElementById('perDel').style.display=id?'inline-block':'none';
+  const p=id?S.people.find(x=>x.id===id):null;
+  document.getElementById('per-name').value=p?.name||'';
+  document.getElementById('per-vet').value=p?.vet||'first';
+  document.getElementById('per-phone').value=p?.phone||'';
+  document.getElementById('per-notes').value=p?.notes||'';
+  openModal('personModal');
+}
+function savePerson(){
+  const p={id:eP||uid(),name:document.getElementById('per-name').value||'Traveler',vet:document.getElementById('per-vet').value,phone:document.getElementById('per-phone').value,notes:document.getElementById('per-notes').value};
+  if(eP)S.people=S.people.map(x=>x.id===eP?p:x);else S.people.push(p);
+  closeModal('personModal');renderPeople();
+}
+function deletePerson(){if(!eP)return;S.people=S.people.filter(x=>x.id!==eP);closeModal('personModal');renderPeople();}
+
+// RENDER
+function renderAll(){renderOverview();renderItinerary();renderFlights();renderPeople();}
+
+function ecHTML(ev,compact=false){
+  const m=TM[ev.type]||TM.other;
+  return`<div class="ecard" onclick="openEventModal('${ev.id}')">
+    <div class="ecinner">
+      <div class="estrepe" style="background:${m.stripe}"></div>
+      <div class="ebody">
+        <div class="etimecol">${ev.time?`<div class="etime">${ft(ev.time)}</div>${ev.endtime?`<div class="etime" style="font-size:10px;color:var(--muted)">${ft(ev.endtime)}</div>`:''}` :`<div class="eallday">All day</div>`}</div>
+        <div class="einfo">
+          <div class="ename">${ev.name}</div>
+          ${ev.location?`<div class="ewhere">📍 ${ev.location}</div>`:''}
+          ${ev.who&&ev.who!=='Everyone'?`<div class="ewhere">👤 ${ev.who}</div>`:''}
+          ${ev.notes&&!compact?`<div class="enote">${ev.notes}</div>`:''}
+          ${ev.alltrails&&!compact?`<a href="${ev.alltrails}" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;font-size:11px;font-weight:600;color:#3d8c3d;text-decoration:none;background:#e8f4e0;padding:3px 9px;border-radius:20px;border:1px solid #c0daa0">🥾 View on AllTrails</a>`:''}
+        </div>
+        <span class="etag ${m.cls}">${m.label}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderOverview(){
+  document.getElementById('overviewDays').innerHTML=DAYS.map(day=>{
+    const evs=S.events.filter(e=>e.day===day).sort((a,b)=>a.time.localeCompare(b.time));
+    if(!evs.length)return'';
+    return`<div class="dpreview"><div class="dprlbl">${day} · ${DATES[day]}</div>${evs.map(e=>ecHTML(e,true)).join('')}</div>`;
+  }).join('');
+}
+
+function renderItinerary(){
+  document.getElementById('itineraryList').innerHTML=DAYS.map(day=>{
+    const evs=S.events.filter(e=>e.day===day).sort((a,b)=>a.time.localeCompare(b.time));
+    if(!evs.length)return'';
+    return`<div class="dayblock">
+      <div class="dayhdr"><div class="daybadge"><div class="dbwk">${day.slice(0,3).toUpperCase()}</div><div class="dbdt">${DATES[day]}</div></div></div>
+      ${evs.map(e=>ecHTML(e)).join('')}
+    </div>`;
+  }).join('');
+}
+
+function flcHTML(fl){
+  const isOut=fl.dir==='outbound';
+  const dateStr=fl.date?new Date(fl.date+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}):'—';
+  const viaStr=(fl.via||'').trim();
+  const isDirect=!viaStr||viaStr.toLowerCase()==='direct'||viaStr.toLowerCase()==='nonstop';
+  const viaHTML=isDirect?`<div class="fdirect">✓ Nonstop</div>`:`<div class="fvia">via ${viaStr.toUpperCase()}</div>`;
+  const nums=(fl.num||'').split('/').map(s=>s.trim()).filter(Boolean);
+  const numBtns=nums.map(n=>`<button class="fnbtn" onclick="event.stopPropagation();showStatus('${n}','${fl.airline||'Delta Air Lines'}','${fl.from}','${ft(fl.dep)}','${fl.to}','${ft(fl.arr)}')">${n}</button>`).join('');
+  return`<div class="fltcard">
+    <div class="flthd ${isOut?'outbound':'inbound'}">
+      <div><div class="fltdlbl">${isOut?'✈ OUTBOUND':'✈ RETURN'} · ${dateStr}</div><div class="fltpname">${fl.name||'—'}</div></div>
+      <div class="fltairline">${fl.airline||'Delta'}</div>
+    </div>
+    <div class="fltbody">
+      <div class="flroute">
+        <div class="fap"><div class="fcode">${fl.from||'—'}</div>${fl.dep?`<div class="ftime">${ft(fl.dep)}</div>`:''}</div>
+        <div class="farrow">
+          <div class="fline"></div>
+          <div class="fmeta">${numBtns||''}${viaHTML}</div>
+        </div>
+        <div class="fap"><div class="fcode">${fl.to||'—'}</div>${fl.arr?`<div class="ftime">${ft(fl.arr)}</div>`:''}</div>
+      </div>
+      <div class="fltdets">
+        <div><div class="fdlbl">Date</div><div class="fdval">${dateStr}</div></div>
+        <div><div class="fdlbl">Conf #</div><div class="fdval">${fl.conf||'—'}</div></div>
+        ${fl.notes?`<div style="grid-column:1/-1"><div class="fdlbl">Notes</div><div class="fdval" style="font-size:12px;color:var(--muted);line-height:1.4">${fl.notes}</div></div>`:''}
+      </div>
+    </div>
+    <div class="fltfoot"><button class="ibtn" onclick="openFlightModal('${fl.id}')">✎ Edit</button></div>
+  </div>`;
+}
+
+function renderFlights(){
+  document.getElementById('flightsList').innerHTML=S.flights.sort((a,b)=>a.dir==='outbound'&&b.dir!=='outbound'?-1:a.dir!=='outbound'&&b.dir==='outbound'?1:a.name.localeCompare(b.name)).map(flcHTML).join('');
+}
+
+function renderPeople(){
+  document.getElementById('peopleList').innerHTML=S.people.map(p=>{
+    const first=p.vet==='first';
+    return`<div class="pcard">
+      <div class="ava" style="background:${ac(p.name)}">${ini(p.name)}</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px">
+          <div class="pname">${p.name}</div>
+          <span class="pbadge ${first?'bfirst':'bvet'}">${first?'First Timer 🆕':'Montana Vet 🏔'}</span>
+        </div>
+        <div class="psub">${p.phone||p.notes||''}</div>
+      </div>
+      <button class="ibtn" onclick="openPersonModal('${p.id}')">✎ Edit</button>
+    </div>`;
+  }).join('');
+}
+
+// ── SEED ──────────────────────────────────────────────────────────────────────
+(function(){
+  S.events=[
+    {id:uid(),name:"Fly In",type:"transport",day:"Wednesday",time:"",endtime:"",location:"Bozeman Yellowstone Intl (BZN)",who:"Everyone",notes:"Arrivals throughout the day — coordinate pickups!"},
+    {id:uid(),name:"Booze, Groceries & Bozeman Run",type:"other",day:"Wednesday",time:"",endtime:"",location:"Bozeman, MT",who:"Everyone",notes:"Stock up for the week. Other essentials too 😉"},
+    {id:uid(),name:"Ousel Falls Hike",type:"activity",day:"Wednesday",time:"17:00",endtime:"18:30",location:"Ousel Falls Park, Big Sky",who:"Everyone",notes:"Quick waterfall hike — easy trail, great intro to Big Sky · 1.4 mi · Easy · ~40 min",alltrails:"https://www.alltrails.com/trail/us/montana/ousel-falls-park-trail"},
+    {id:uid(),name:"Dinner — Riverhouse BBQ",type:"food",day:"Wednesday",time:"19:30",endtime:"",location:"Riverhouse BBQ, Big Sky",who:"Everyone",notes:""},
+    {id:uid(),name:"Tee Time — Big Sky Golf Course",type:"golf",day:"Thursday",time:"08:30",endtime:"13:00",location:"Big Sky Golf Course",who:"Boys",notes:"Booked ✅ 8:30am"},
+    {id:uid(),name:"Coffee & Shopping in Town",type:"activity",day:"Thursday",time:"09:00",endtime:"12:00",location:"Big Sky Town Center",who:"Girls",notes:"Small hike near town center option"},
+    {id:uid(),name:"Lunch — Sandwiches",type:"food",day:"Thursday",time:"13:00",endtime:"",location:"TBD",who:"Everyone",notes:"Regroup after morning activities"},
+    {id:uid(),name:"Big Sky PBR Rodeo",type:"event",day:"Thursday",time:"19:00",endtime:"",location:"Big Sky, MT",who:"Everyone",notes:"Eat at the rodeo — check food vendors on site"},
+    {id:uid(),name:"Lava Lake Hike",type:"activity",day:"Friday",time:"08:00",endtime:"11:30",location:"Lava Lake Trailhead, Big Sky",who:"Everyone",notes:"Go early! Stunning alpine lake — 5.5 mi · Moderate · ~3.5 hrs · 1,610 ft elevation gain",alltrails:"https://www.alltrails.com/trail/us/montana/lava-lake-cascade-creek-trail"},
+    {id:uid(),name:"Shower & Freshen Up",type:"other",day:"Friday",time:"12:00",endtime:"13:00",location:"Cabin",who:"Everyone",notes:""},
+    {id:uid(),name:"Late Lunch — Lone Mountain Ranch",type:"food",day:"Friday",time:"13:30",endtime:"",location:"Lone Mountain Ranch, Big Sky",who:"Everyone",notes:""},
+    {id:uid(),name:"Drinks & Bites — Riverhouse",type:"food",day:"Friday",time:"19:00",endtime:"",location:"Riverhouse BBQ, Big Sky",who:"Everyone",notes:"Casual night — drinks and small plates"},
+    {id:uid(),name:"Tee Time — Big Sky Golf Course",type:"golf",day:"Saturday",time:"08:30",endtime:"13:00",location:"Big Sky Golf Course",who:"Boys",notes:"Booked ✅ 8:30am"},
+    {id:uid(),name:"Brunch — Montage Big Sky",type:"food",day:"Saturday",time:"09:30",endtime:"12:00",location:"Montage Big Sky",who:"Girls",notes:""},
+    {id:uid(),name:"Afternoon Hike",type:"activity",day:"Saturday",time:"14:00",endtime:"",location:"TBD — Big Sky",who:"Everyone",notes:"Easy one — everyone regroups after morning"},
+    {id:uid(),name:"Dinner in Town",type:"food",day:"Saturday",time:"18:00",endtime:"",location:"Big Sky Town Center",who:"Everyone",notes:""},
+    {id:uid(),name:"Dylan Gosset Concert",type:"event",day:"Saturday",time:"21:00",endtime:"",location:"TBD — Big Sky",who:"Everyone",notes:"🎸 Confirm venue & tickets"},
+  ];
+
+  // FLIGHTS — real data from screenshots
+  S.flights=[
+    {
+      id:uid(),name:"Grant & Emily",dir:"outbound",
+      from:"BNA",to:"BZN",via:"MSP",
+      date:"2026-07-15",dep:"06:00",arr:"10:21",
+      num:"DL2221 / DL1226",airline:"Delta Air Lines",conf:"",
+      notes:"Leg 1: BNA→MSP 6:00–8:10am (DL2221, 40min layover) · Leg 2: MSP→BZN 8:50–10:21am (DL1226) · Total: 5h 21m"
+    },
+    {
+      id:uid(),name:"Matt & Sarah",dir:"outbound",
+      from:"CLT",to:"BZN",via:"1 stop",
+      date:"2026-07-15",dep:"05:45",arr:"11:14",
+      num:"",airline:"American Airlines",conf:"",
+      notes:"Charlotte → Bozeman · 7h 29m · 1 stop · Basic Economy"
+    },
+    {
+      id:uid(),name:"Grant & Emily",dir:"return",
+      from:"BZN",to:"BNA",via:"MSP",
+      date:"2026-07-20",dep:"15:53",arr:"22:26",
+      num:"DL2946 / DL1144",airline:"Delta Air Lines",conf:"",
+      notes:"Leg 1: BZN→MSP 3:53–7:13pm (DL2946, 1h 7min layover) · Leg 2: MSP→BNA 8:20–10:26pm (DL1144) · Total: 5h 33m"
+    },
+    {
+      id:uid(),name:"Quinn",dir:"outbound",
+      from:"ATL",to:"BZN",via:"",
+      date:"2026-07-15",dep:"08:55",arr:"10:59",
+      num:"DL2516",airline:"Delta Air Lines",conf:"",
+      notes:"Atlanta → Bozeman · 4h 4m · Nonstop ✓ · Boeing 757 · Seats 24E & 24D"
+    },
+    {
+      id:uid(),name:"Quinn",dir:"return",
+      from:"BZN",to:"ATL",via:"",
+      date:"2026-07-20",dep:"12:20",arr:"18:12",
+      num:"DL2516",airline:"Delta Air Lines",conf:"",
+      notes:"Bozeman → Atlanta · 3h 52m · Nonstop ✓ · Boeing 757 · Seats 23B & 23C"
+    },
+    {
+      id:uid(),name:"Evan",dir:"outbound",
+      from:"ATL",to:"BZN",via:"",
+      date:"2026-07-15",dep:"11:09",arr:"13:11",
+      num:"DL0406",airline:"Delta Air Lines",conf:"",
+      notes:"Atlanta → Bozeman · 4h 2m · Nonstop ✓ · Boeing 757 · Seat 26B"
+    },
+    {
+      id:uid(),name:"Evan",dir:"return",
+      from:"BZN",to:"ATL",via:"",
+      date:"2026-07-20",dep:"12:20",arr:"18:12",
+      num:"DL2516",airline:"Delta Air Lines",conf:"",
+      notes:"Bozeman → Atlanta · 3h 52m · Nonstop ✓ · Boeing 757"
+    },
+    {
+      id:uid(),name:"Matt & Sarah",dir:"return",
+      from:"BZN",to:"CLT",via:"",
+      date:"2026-07-19",dep:"13:21",arr:"19:33",
+      num:"",airline:"American Airlines",conf:"",
+      notes:"Bozeman → Charlotte · 4h 12m · Nonstop ✓ · Basic Economy"
+    },
+  ];
+
+  S.people=[
+    {id:uid(),name:"Grant",vet:"vet",phone:"",notes:""},
+    {id:uid(),name:"Emily",vet:"vet",phone:"",notes:""},
+    {id:uid(),name:"Matt",vet:"vet",phone:"",notes:"CLT crew"},
+    {id:uid(),name:"Sarah",vet:"first",phone:"",notes:"CLT crew"},
+    {id:uid(),name:"Quinn",vet:"first",phone:"",notes:""},
+    {id:uid(),name:"Bri",vet:"first",phone:"",notes:""},
+    {id:uid(),name:"Shelby",vet:"first",phone:"",notes:""},
+    {id:uid(),name:"Evan",vet:"vet",phone:"",notes:""},
+  ];
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
