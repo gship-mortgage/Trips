@@ -389,7 +389,7 @@ textarea{resize:vertical;min-height:65px;}
 </div>
 
 <script>
-const DAYS=["Wednesday","Thursday","Friday","Saturday"];
+const DAYS=["Wednesday","Thursday","Friday","Saturday","Sunday","Monday"];
 const DATES={Wednesday:"Jul 15",Thursday:"Jul 16",Friday:"Jul 17",Saturday:"Jul 18"};
 const TM={
   food:{label:"Food & Drink",cls:"tag-food",stripe:"#e67e22"},
@@ -618,6 +618,10 @@ function renderPeople(){
     {id:uid(),name:"Afternoon Hike",type:"activity",day:"Saturday",time:"14:00",endtime:"",location:"TBD — Big Sky",who:"Everyone",notes:"Easy one — everyone regroups after morning"},
     {id:uid(),name:"Dinner in Town",type:"food",day:"Saturday",time:"18:00",endtime:"",location:"Big Sky Town Center",who:"Everyone",notes:""},
     {id:uid(),name:"Dylan Gosset Concert",type:"event",day:"Saturday",time:"21:00",endtime:"",location:"TBD — Big Sky",who:"Everyone",notes:"🎸 Confirm venue & tickets"},
+    {id:uid(),name:"Matt & Sarah depart BZN",type:"transport",day:"Sunday",time:"13:21",endtime:"",location:"Bozeman Yellowstone Intl (BZN)",who:"Matt & Sarah",notes:"BZN 1:21pm MDT → CLT 7:33pm EST · American Airlines · Nonstop · 4h 12m"},
+    {id:uid(),name:"Quinn & Bri depart BZN",type:"transport",day:"Monday",time:"12:20",endtime:"",location:"Bozeman Yellowstone Intl (BZN)",who:"Quinn & Bri",notes:"BZN 12:20pm MDT → ATL 6:12pm EST · Delta DL2516 · Nonstop · 3h 52m · Seats 23B & 23C"},
+    {id:uid(),name:"Evan & Shelby depart BZN",type:"transport",day:"Monday",time:"12:20",endtime:"",location:"Bozeman Yellowstone Intl (BZN)",who:"Evan & Shelby",notes:"BZN 12:20pm MDT → ATL 6:12pm EST · Delta DL2516 · Nonstop · 3h 52m"},
+    {id:uid(),name:"Grant & Emily depart BZN",type:"transport",day:"Monday",time:"15:53",endtime:"",location:"Bozeman Yellowstone Intl (BZN)",who:"Grant & Emily",notes:"BZN 3:53pm MDT → BNA 10:26pm CST · Delta DL2946/DL1144 via MSP · 5h 33m"},
   ];
 
   // FLIGHTS — real data from screenshots
