@@ -205,7 +205,7 @@ textarea{resize:vertical;min-height:65px;}
   <div style="text-align:right">
     <div class="clbl">Wheels up</div>
     <div class="cdatetxt">Wednesday, July 15, 2026</div>
-    <div style="font-size:11px;color:rgba(244,241,235,.45);margin-top:3px;font-family:'DM Mono',monospace">BNA 6:00am · CLT 5:45am</div>
+    <div style="font-size:11px;color:rgba(244,241,235,.45);margin-top:3px;font-family:'DM Mono',monospace">CLT 5:45am · BNA 6:00am · ATL 8:55am · ATL 11:09am</div>
   </div>
 </div>
 
@@ -598,7 +598,10 @@ function renderPeople(){
 // ── SEED ──────────────────────────────────────────────────────────────────────
 (function(){
   S.events=[
-    {id:uid(),name:"Fly In",type:"transport",day:"Wednesday",time:"",endtime:"",location:"Bozeman Yellowstone Intl (BZN)",who:"Everyone",notes:"Arrivals throughout the day — coordinate pickups!"},
+    {id:uid(),name:"Grant & Emily arrive BZN",type:"transport",day:"Wednesday",time:"10:21",endtime:"",location:"Bozeman Yellowstone Intl (BZN)",who:"Grant & Emily",notes:"Depart BNA 6:00am CST · Delta DL2221/DL1226 via MSP · Arrives 10:21am MDT"},
+    {id:uid(),name:"Quinn & Bri arrive BZN",type:"transport",day:"Wednesday",time:"10:59",endtime:"",location:"Bozeman Yellowstone Intl (BZN)",who:"Quinn & Bri",notes:"Depart ATL 8:55am EST · Delta DL2516 nonstop · Arrives 10:59am MDT"},
+    {id:uid(),name:"Matt & Sarah arrive BZN",type:"transport",day:"Wednesday",time:"11:14",endtime:"",location:"Bozeman Yellowstone Intl (BZN)",who:"Matt & Sarah",notes:"Depart CLT 5:45am EST · American Airlines · 1 stop · Arrives 11:14am MDT"},
+    {id:uid(),name:"Evan & Shelby arrive BZN",type:"transport",day:"Wednesday",time:"13:11",endtime:"",location:"Bozeman Yellowstone Intl (BZN)",who:"Evan & Shelby",notes:"Depart ATL 11:09am EST · Delta DL0406 nonstop · Arrives 1:11pm MDT"},
     {id:uid(),name:"Booze, Groceries & Bozeman Run",type:"other",day:"Wednesday",time:"",endtime:"",location:"Bozeman, MT",who:"Everyone",notes:"Stock up for the week. Other essentials too 😉"},
     {id:uid(),name:"Ousel Falls Hike",type:"activity",day:"Wednesday",time:"17:00",endtime:"18:30",location:"Ousel Falls Park, Big Sky",who:"Everyone",notes:"Quick waterfall hike — easy trail, great intro to Big Sky · 1.4 mi · Easy · ~40 min",alltrails:"https://www.alltrails.com/trail/us/montana/ousel-falls-park-trail"},
     {id:uid(),name:"Dinner — Riverhouse BBQ",type:"food",day:"Wednesday",time:"19:30",endtime:"",location:"Riverhouse BBQ, Big Sky",who:"Everyone",notes:""},
@@ -641,28 +644,28 @@ function renderPeople(){
       notes:"Leg 1: BZN→MSP 3:53–7:13pm (DL2946, 1h 7min layover) · Leg 2: MSP→BNA 8:20–10:26pm (DL1144) · Total: 5h 33m"
     },
     {
-      id:uid(),name:"Quinn",dir:"outbound",
+      id:uid(),name:"Quinn & Bri",dir:"outbound",
       from:"ATL",to:"BZN",via:"",
       date:"2026-07-15",dep:"08:55",arr:"10:59",
       num:"DL2516",airline:"Delta Air Lines",conf:"",
       notes:"Atlanta → Bozeman · 4h 4m · Nonstop ✓ · Boeing 757 · Seats 24E & 24D"
     },
     {
-      id:uid(),name:"Quinn",dir:"return",
+      id:uid(),name:"Quinn & Bri",dir:"return",
       from:"BZN",to:"ATL",via:"",
       date:"2026-07-20",dep:"12:20",arr:"18:12",
       num:"DL2516",airline:"Delta Air Lines",conf:"",
       notes:"Bozeman → Atlanta · 3h 52m · Nonstop ✓ · Boeing 757 · Seats 23B & 23C"
     },
     {
-      id:uid(),name:"Evan",dir:"outbound",
+      id:uid(),name:"Evan & Shelby",dir:"outbound",
       from:"ATL",to:"BZN",via:"",
       date:"2026-07-15",dep:"11:09",arr:"13:11",
       num:"DL0406",airline:"Delta Air Lines",conf:"",
       notes:"Atlanta → Bozeman · 4h 2m · Nonstop ✓ · Boeing 757 · Seat 26B"
     },
     {
-      id:uid(),name:"Evan",dir:"return",
+      id:uid(),name:"Evan & Shelby",dir:"return",
       from:"BZN",to:"ATL",via:"",
       date:"2026-07-20",dep:"12:20",arr:"18:12",
       num:"DL2516",airline:"Delta Air Lines",conf:"",
